@@ -22,28 +22,28 @@
                 <div class="card-body p-0 pt-3">
                     <table class="table table-bordered text-center">
                         <tr>
-                            <td onclick="getValues(7)" id='num7'>7</td>
-                            <td onclick="getValues(8)" id='num8'>8</td>
-                            <td onclick="getValues(9)" id='num9'>9</td>
-                            <td onclick="operator('+')" id='num+'>+</td>
+                            <td onclick="getValues(7)">7</td>
+                            <td onclick="getValues(8)">8</td>
+                            <td onclick="getValues(9)">9</td>
+                            <td onclick="operator('+')">+</td>
                         </tr>
                         <tr>
-                            <td onclick="getValues(4)" id='num4'>4</td>
-                            <td onclick="getValues(5)" id='num5'>5</td>
-                            <td onclick="getValues(6)" id='num6'>6</td>
-                            <td onclick="operator('-')" id='num-'>-</td>
+                            <td onclick="getValues(4)">4</td>
+                            <td onclick="getValues(5)">5</td>
+                            <td onclick="getValues(6)">6</td>
+                            <td onclick="operator('-')">-</td>
                         </tr>
                         <tr>
-                            <td onclick="getValues(1)" id='num8'>1</td>
-                            <td onclick="getValues(2)" id='num8'>2</td>
-                            <td onclick="getValues(3)" id='num8'>3</td>
-                            <td onclick="operator('*')" id='num8'>*</td>
+                            <td onclick="getValues(1)">1</td>
+                            <td onclick="getValues(2)">2</td>
+                            <td onclick="getValues(3)">3</td>
+                            <td onclick="operator('*')">*</td>
                         </tr>
                         <tr>
-                            <td onclick="getValues(0)" id='num0'>0</td>
-                            <td onclick="clearValue()" id='num.'>Clr</td>
-                            <td onclick="operator('/')" id='num/'>/</td>
-                            <td onclick="oncalculate()" id='num='>=</td>
+                            <td onclick="getValues(0)">0</td>
+                            <td onclick="clearValue()">Clr</td>
+                            <td onclick="operator('/')">/</td>
+                            <td onclick="oncalculate()">=</td>
                         </tr>
                     </table>
                 </div>
@@ -73,34 +73,12 @@
                 url: "http://127.0.0.1:5000/result",
                 contentType: 'application/json;charset=UTF-8',
                 data: { 'data': document.getElementById("value").value },
-                success: function (result) {
-                    document.getElementById("value").value = result['result']
-                },
-                error: function () {
-                    console.log('Invalid input')
-
-                }
+                success: function (result) { document.getElementById("value").value = result['result'] },
+                error: function () { console.log('Invalid input'); }
             });
 
         }
     </script>
-    <!-- <p>
-        Hello {{ name }}
-    </p> -->
 </body>
 
 </html>
-
-
-
-
-<!-- 
-<form action = "http://localhost:5000/result" method = "POST">
-    <p>Name <input type = "text" name = "Name" /></p>
-    <p>Physics <input type = "text" name = "Physics" /></p>
-    <p>Chemistry <input type = "text" name = "chemistry" /></p>
-    <p>Maths <input type ="text" name = "Mathematics" /></p>
-    <p><input type = "submit" value = "submit" /></p>
- </form>
-
- {{result}} -->
