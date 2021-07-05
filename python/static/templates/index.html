@@ -1,0 +1,106 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <div class="row">
+
+        <div class="col-md-4 offset-md-4">
+            <h3 class="text-center mt-5">Simple Calculator</h3>
+            <div class="card p-4 mt-2">
+                <input class='form-control bg-light' id="value" readonly>
+                <div class="card-body p-0 pt-3">
+                    <table class="table table-bordered text-center">
+                        <tr>
+                            <td onclick="getValues(7)" id='num7'>7</td>
+                            <td onclick="getValues(8)" id='num8'>8</td>
+                            <td onclick="getValues(9)" id='num9'>9</td>
+                            <td onclick="operator('+')" id='num+'>+</td>
+                        </tr>
+                        <tr>
+                            <td onclick="getValues(4)" id='num4'>4</td>
+                            <td onclick="getValues(5)" id='num5'>5</td>
+                            <td onclick="getValues(6)" id='num6'>6</td>
+                            <td onclick="operator('-')" id='num-'>-</td>
+                        </tr>
+                        <tr>
+                            <td onclick="getValues(1)" id='num8'>1</td>
+                            <td onclick="getValues(2)" id='num8'>2</td>
+                            <td onclick="getValues(3)" id='num8'>3</td>
+                            <td onclick="operator('*')" id='num8'>*</td>
+                        </tr>
+                        <tr>
+                            <td onclick="getValues(0)" id='num0'>0</td>
+                            <td onclick="clearValue()" id='num.'>Clr</td>
+                            <td onclick="operator('/')" id='num/'>/</td>
+                            <td onclick="oncalculate()" id='num='>=</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let check = true;
+        function getValues(val) {
+            check = true;
+            var temp = document.getElementById("value").value;
+            document.getElementById("value").value = temp + val;
+        }
+        function operator(op) {
+            if (check) {
+                document.getElementById("value").value = document.getElementById("value").value + op
+                return check = false;
+            }
+        }
+        function clearValue() {
+            console.log('clear')
+            document.getElementById("value").value = "";
+        }
+        function oncalculate() {
+            $.ajax({
+                type: "GET",
+                url: "http://127.0.0.1:5000/result",
+                contentType: 'application/json;charset=UTF-8',
+                data: { 'data': document.getElementById("value").value },
+                success: function (result) {
+                    document.getElementById("value").value = result['result']
+                },
+                error: function () {
+                    console.log('Invalid input')
+
+                }
+            });
+
+        }
+    </script>
+    <!-- <p>
+        Hello {{ name }}
+    </p> -->
+</body>
+
+</html>
+
+
+
+
+<!-- 
+<form action = "http://localhost:5000/result" method = "POST">
+    <p>Name <input type = "text" name = "Name" /></p>
+    <p>Physics <input type = "text" name = "Physics" /></p>
+    <p>Chemistry <input type = "text" name = "chemistry" /></p>
+    <p>Maths <input type ="text" name = "Mathematics" /></p>
+    <p><input type = "submit" value = "submit" /></p>
+ </form>
+
+ {{result}} -->
