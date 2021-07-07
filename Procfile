@@ -1,1 +1,1 @@
-web: gunicorn pythonbasicexamples.wsgi
+web: gunicorn pythonbasicexamples/pythonbasicexamples.wsgi
