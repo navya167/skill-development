@@ -42,7 +42,7 @@
                             <td onclick="getValues(0)">0</td>
                             <td onclick="clearValue()">Clr</td>
                             <td onclick="operator('/')">/</td>
-                            <td onclick="oncalculate()">=</td>
+                            <td id='calculate'>=</td>
                         </tr>
                     </table>
                 </div>
@@ -50,6 +50,9 @@
         </div>
     </div>
     <script>
+        const btn = document.getElementById('calculate');
+        btn.addEventListener('click',()=>{oncalculate();});
+         btn.addEventListener('tap', () => {oncalculate();});
         let check = true;
         function getValues(val) {
             check = true;
