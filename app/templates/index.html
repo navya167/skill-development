@@ -69,7 +69,7 @@
         function oncalculate() {
             $.ajax({
                 type: "GET",
-                url: "http://127.0.0.1:5000/result",
+                url: "https://skill-development.herokuapp.com/result",
                 data: { 'data': document.getElementById("value").value },
                 success: function (result) { document.getElementById("value").value = result['result'] },
                 xhrFields: {
