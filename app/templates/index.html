@@ -70,9 +70,13 @@
             $.ajax({
                 type: "GET",
                 url: "http://127.0.0.1:5000/result",
-                contentType: 'application/json;charset=UTF-8',
                 data: { 'data': document.getElementById("value").value },
                 success: function (result) { document.getElementById("value").value = result['result'] },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                contentType: 'application/json; charset=utf-8',
                 error: function () { console.log('Invalid input'); }
             });
 
